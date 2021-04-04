@@ -159,11 +159,9 @@ export default {
   },
   methods: {
     validate() {
-      if (this.$refs.form.validate()) {
-        localStorage.setItem("token", md5(this.token));
-        alert("Maybe you can use this?");
-        this.tokenShow = false;
-      }
+      localStorage.setItem("token", md5(this.token));
+      alert("Maybe you can use this?");
+      this.tokenShow = false;
     },
     reset() {
       localStorage.removeItem("token");
