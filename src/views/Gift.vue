@@ -171,9 +171,9 @@ export default {
       this.$router.push("/");
     },
     onDecode(a, b, c) {
-      alert("掃到了，記得確認內容並按下送出鍵才能完成");
       console.log(a, b, c);
       this.id = a;
+      alert("掃到了，記得確認內容並按下送出鍵才能完成");
     },
     onLoaded() {
       console.log("load");
@@ -181,7 +181,7 @@ export default {
     sendId() {
       this.formLoadingShow = true;
       let url =
-        "https://script.google.com/macros/s/AKfycbyqMULgpICt5ybcuVXt9CJSoITZXOxCyhb1iMlxN_hL1z8QidtT0fYc9ScFprJgYrEq/exec?m=t&i=" +
+        "https://script.google.com/macros/s/AKfycby5u9iMxcdyE9TSQ2iV5O75QsyLXgqH_H7pVNtF5uWDQjWFaM3xfTUtWBbFrnv6yt4t/exec?m=t&i=" +
         this.id +
         "&v=" +
         localStorage.getItem("token");
