@@ -68,6 +68,8 @@
               </v-row>
               <v-row align="center" justify="center" length>
                 <br />
+              </v-row>
+              <v-row align="center" justify="center" length>
                 <v-form
                   ref="form"
                   v-model="valid"
@@ -98,7 +100,7 @@
                       color="#87C1A2"
                       dark
                       class="mr-4"
-                      @click="sendID"
+                      @click="sendId"
                       >送 出</v-btn
                     >
                     <br /><br />
@@ -169,7 +171,6 @@ export default {
       this.$router.push("/");
     },
     onDecode(a, b, c) {
-      alert(a);
       console.log(a, b, c);
       this.id = a;
     },
@@ -180,7 +181,7 @@ export default {
       this.formLoadingShow = true;
       let url =
         "https://script.google.com/macros/s/AKfycbyqMULgpICt5ybcuVXt9CJSoITZXOxCyhb1iMlxN_hL1z8QidtT0fYc9ScFprJgYrEq/exec?m=t&i=" +
-        this.studentId +
+        this.id +
         "&v=" +
         localStorage.getItem("token");
       this.$http
@@ -188,7 +189,7 @@ export default {
         .then((response) => {
           this.formLoadingShow = false;
           console.log(response);
-          if (response.data.err) {
+          if (!response.data.err) {
             alert("可以直接領取");
           } else {
             if (response.data.errCode === 2) {
