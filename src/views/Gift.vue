@@ -199,6 +199,8 @@ export default {
               alert("沒有早鳥");
             } else if (response.data.errCode === 4) {
               alert("拿過了，拿的時間在 " + response.data.message);
+            } else if (response.data.errCode === 88) {
+              alert("你知道嗎，你不能用這個系統喔，ㄅㄅ");
             } else {
               alert("怪怪的");
             }

@@ -197,7 +197,13 @@ export default {
               alert("完成簽到");
             }
           } else {
-            alert("已經報到過了，本次操作無更新資料");
+            if (response.data.errCode === 1) {
+              alert("你已經報到過了，本次操作無更新資料");
+            } else if (response.data.errCode === 88) {
+              alert("你知道嗎，你不能用這個系統喔，ㄅㄅ");
+            } else {
+              alert("怪怪的");
+            }
           }
         })
         .catch((error) => {
