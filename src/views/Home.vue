@@ -171,6 +171,7 @@ export default {
       this.$router.push("/");
     },
     onDecode(a, b, c) {
+      alert("掃到了，記得確認內容並按下送出鍵才能完成");
       console.log(a, b, c);
       this.id = a;
     },
@@ -204,6 +205,7 @@ export default {
           alert(error);
           alert("無法存取後端服務");
         });
+      this.id = "";
     },
   },
   mounted: function () {
