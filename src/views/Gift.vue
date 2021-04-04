@@ -6,7 +6,7 @@
         <v-row>
           <v-col cols="12" style="background-color: #e9e8e7">
             <v-row align="center" justify="center" length>
-              <h1>報 到</h1>
+              <h1>領 獎</h1>
             </v-row>
             <v-row align="center" justify="center" length>
               <br />
@@ -90,7 +90,7 @@
                     <v-text-field
                       v-model="id"
                       :rules="idRules"
-                      label="學號 / 身分證字號"
+                      label="學號"
                       required
                     ></v-text-field>
                     <v-btn
@@ -181,7 +181,7 @@ export default {
     sendId() {
       this.formLoadingShow = true;
       let url =
-        "https://script.google.com/macros/s/AKfycbyqMULgpICt5ybcuVXt9CJSoITZXOxCyhb1iMlxN_hL1z8QidtT0fYc9ScFprJgYrEq/exec?m=c&i=" +
+        "https://script.google.com/macros/s/AKfycbyqMULgpICt5ybcuVXt9CJSoITZXOxCyhb1iMlxN_hL1z8QidtT0fYc9ScFprJgYrEq/exec?m=t&i=" +
         this.studentId +
         "&v=" +
         localStorage.getItem("token");
@@ -191,13 +191,17 @@ export default {
           this.formLoadingShow = false;
           console.log(response);
           if (response.data.err) {
-            if (response.data.message === "V") {
-              alert("完成簽到，且獲得早鳥");
-            } else {
-              alert("完成簽到");
-            }
+            alert("可以直接領取");
           } else {
-            alert("已經報到過了，本次操作無更新資料");
+            if (response.data.errCode === 2) {
+              alert("沒有簽到記錄");
+            } else if (response.data.errCode === 3) {
+              alert("沒有早鳥");
+            } else if (response.data.errCode === 4) {
+              alert("拿過了，拿的時間在 " + response.data.message);
+            } else {
+              alert("怪怪的");
+            }
           }
         })
         .catch((error) => {

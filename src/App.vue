@@ -1,32 +1,52 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <v-app style="background-color: #e9e8e7">
+    <div class="inapp">
+      <v-app-bar app dark color="#9B7575">
+        <v-spacer></v-spacer>
+        <h2>NTPUSU CDC</h2>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+
+      <v-main>
+        <div id="router" v-bind:style="{ minHeight: Height + 'px' }">
+          <router-view />
+        </div>
+      </v-main>
     </div>
-    <router-view/>
-  </div>
+
+    <v-footer padless class="font-weight-medium" color="#D0D0D0">
+      <v-col class="text-center" cols="12" style="font-size: 14px">
+        &copy; 2021 Copyright NTPU SU 21th. All rights reserved.
+      </v-col>
+    </v-footer>
+  </v-app>
 </template>
 
+<script>
+// import HelloWorld from './components/HelloWorld';
+export default {
+  name: "App",
+  components: {
+    // HelloWorld,
+  },
+  data: () => ({
+    Height: 0,
+  }),
+  mounted() {
+    this.Height = document.documentElement.clientHeight - 100;
+    window.onresize = () => {
+      this.Height = document.documentElement.clientHeight - 100;
+    };
+  },
+};
+</script>
+
 <style>
+.inapp {
+  width: 80%;
+  margin-left: 10%;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  font-family: Noto Sans SC;
 }
 </style>
